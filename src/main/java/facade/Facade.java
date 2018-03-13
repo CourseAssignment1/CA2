@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 /**
  *
@@ -35,9 +36,12 @@ public class Facade {
     }
     
     //Mikkel
-    public Person addPerson(Person person) {
-        
-        return person;
+    public void addPerson(Person person) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(person);
+        em.getTransaction().commit();
+
     }
 
     //Lene
@@ -50,7 +54,12 @@ public class Facade {
     //Mikkel
     public List<Person> getPersonsWithHobby(Hobby hobby){
         List<Person> persons = new ArrayList();
-        
+        EntityManager em = emf.createEntityManager();
+        Query q1 = em.createQuery("SELECT p,h FROM Hobby h,Person p WHERE h.hobby = :hobby");
+        q1.setParameter("hobby", hobby.getId());
+        em.getTransaction().begin();
+        persons = (List<Person>) q1.getResultList();
+        em.getTransaction().commit();
         return persons;
     }
     
@@ -64,7 +73,12 @@ public class Facade {
     //Mikkel
     public Company getCompany(long cvr){
         Company company = null;
-        
+        EntityManager em = emf.createEntityManager();
+        Query q1 = em.createQuery("SELECT c FROM Company c WHERE c.cvr = :cvr");
+        q1.setParameter("cvr", cvr);
+        em.getTransaction().begin();
+        company = (Company) q1.getSingleResult();
+        em.getTransaction().commit();
         return company;
     }
 
@@ -77,7 +91,8 @@ public class Facade {
     //Mikkel
     public int countPersonsWithHobby(Hobby hobby) {
         int count = 0;
-        
+        ArrayList<Person> p = (ArrayList<Person>) getPersonsWithHobby(hobby);
+        count = p.size();
         return count;
     }
     
@@ -91,7 +106,12 @@ public class Facade {
     //Mikkel
     public List<Company> getCompaniesWithMoreThanXEmployees(int amount) {
         List<Company> companies = new ArrayList();
-        
+        EntityManager em = emf.createEntityManager();
+        Query q1 = em.createQuery("SELECT c FROM Company c WHERE c.numEmployees = :amount");
+        q1.setParameter("amount", amount);
+        em.getTransaction().begin();
+        companies = (List<Company>) q1.getResultList();
+        em.getTransaction().commit();
         return companies;
     }
 }
