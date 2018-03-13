@@ -65,6 +65,10 @@ public class Person extends InfoEntity {
         this.hobbies = hobbies;
     }
     
+    public void addHobby(Hobby hobby){
+        this.hobbies.add(hobby);
+    }
+    
     
 
 }

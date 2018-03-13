@@ -37,6 +37,11 @@ public class Hobby implements Serializable {
         this.description = description;
         this.persons = persons;
     }
+    
+    public void commitHobbyToPerson(Person person) {
+        persons.add(person);
+        person.addHobby(this);
+    }
 
     public String getName() {
         return name;
@@ -62,9 +67,6 @@ public class Hobby implements Serializable {
         this.persons = persons;
     }
     
-    
-    
-
     public Long getId() {
         return id;
     }
