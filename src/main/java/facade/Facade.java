@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 /**
  *
@@ -30,7 +31,12 @@ public class Facade {
     //Lene
     public Person getPerson(long id) {
         Person person = null;
-        
+        EntityManager em = getEntityManager();
+        try{
+            person = em.find(Person.class,id);
+        }finally{
+            em.close();
+        }
         return person;
     }
     
@@ -43,7 +49,13 @@ public class Facade {
     //Lene
     public List<Person> getPersons(){
         List<Person> persons = new ArrayList();
-        
+        EntityManager em = getEntityManager();
+        try{
+            Query query = em.createQuery("SELECT p FROM Person p");
+            persons = query.getResultList();
+        }finally{
+            em.close();
+        }
         return persons;
     }
     
@@ -56,7 +68,16 @@ public class Facade {
     
     //Lene
     public List<Person> getPersonsFromZip(CityInfo cityInfo){
+        EntityManager em = getEntityManager();
         List<Person> persons = new ArrayList();
+        try{
+            //TODO: Jeg har ingen ide om denne query virker :S
+            Query query = em.createQuery("SELECT p FROM Person p WHERE p.address.cityinfo = :cityinfo");
+            query.setParameter("cityinfo",cityInfo);
+            persons = query.getResultList();
+        }finally{
+            em.close();
+        }
         
         return persons;
     }
@@ -70,8 +91,18 @@ public class Facade {
 
     //Lene
     public Company addCompany(Company company) {
-        
-        return company;
+        EntityManager em = getEntityManager();
+        Company result = null;
+        try{
+            result = company;
+            em.getTransaction().begin();
+            em.persist(result);
+            em.getTransaction().commit();
+        }finally{
+            em.clear();
+            em.close();
+        }
+        return result;
     }
     
     //Mikkel
@@ -83,8 +114,14 @@ public class Facade {
     
     //Lene
     public List<CityInfo> getZips() {
+        EntityManager em = getEntityManager();
         List<CityInfo> cityInfos = new ArrayList();
-        
+        try{
+            Query query = em.createQuery("SELECT ci FROM CityInfo ci");
+            cityInfos = query.getResultList();
+        }finally{
+            em.close();
+        }
         return cityInfos;
     }
     
