@@ -23,6 +23,8 @@ public class MainStuff {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU");
         Facade facade = new Facade(emf);
 
+        
+        
     }
 
 }

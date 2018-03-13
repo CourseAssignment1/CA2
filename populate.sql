@@ -1,3 +1,18 @@
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Running', 'Running in the forest');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Skiing', 'Skiing in the mountains');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Diving', 'Scuba diving');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Climbing', 'Free climbing');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Cycling', 'Track racing on bike');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Stamps', 'Collection stamps');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Dart', 'Playing dart');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Reading', 'Reading books');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Gaming', 'Playing computer games');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Swimming', 'Indoor swimming');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Football', 'Playing football');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Painting', 'Making oil paintings');
+
+
+
 INSERT INTO CITYINFO (ZIP, CITY) VALUES ('0555', 'Scanning');
 INSERT INTO CITYINFO (ZIP, CITY) VALUES ('0800', 'Høje Taastrup');
 INSERT INTO CITYINFO (ZIP, CITY) VALUES ('0877', 'København C');
