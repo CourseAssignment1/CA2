@@ -5,6 +5,12 @@
  */
 package rest;
 
+import entities.*;
+import entities.jsonmessages.*;
+import facade.Facade;
+import java.util.ArrayList;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -12,6 +18,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -22,6 +29,9 @@ import javax.ws.rs.core.MediaType;
 @Path("person")
 public class PersonResource {
 
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU");
+    Facade facade = new Facade(emf);
+
     @Context
     private UriInfo context;
 
@@ -31,21 +41,44 @@ public class PersonResource {
     public PersonResource() {
     }
 
-    /**
-     * Retrieves representation of an instance of entities.PersonResource
-     * @return an instance of java.lang.String
-     */
+    @Path("/complete")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
+    public String getAllPersons() {
+        ArrayList<JSONMessage> messages = new ArrayList<>();
+        for (Person person : facade.getPersons()) {
+            messages.add(new PersonFullMessage(person));
+        }
+        return MessageFacade.messageListtoJson(messages);
     }
 
-    /**
-     * PUT method for updating or creating an instance of PersonResource
-     * @param content representation for the resource
-     */
+    @Path("/complete/{personid}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getPerson(@PathParam("personid") Long id) {
+        Person person = facade.getPerson(id);          
+        return MessageFacade.messagetoJson(new PersonFullMessage(person));
+    }
+
+    @Path("/contactinfo")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAllPersonsInfo() {
+        ArrayList<JSONMessage> messages = new ArrayList<>();
+        for (Person person : facade.getPersons()) {
+            messages.add(new PersonContactMessage(person));
+        }
+        return MessageFacade.messageListtoJson(messages);
+    }
+    
+    @Path("/contactinfo/{personid}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getPersonInfo(@PathParam("personid") Long id) {
+        Person person = facade.getPerson(id);          
+        return MessageFacade.messagetoJson(new PersonContactMessage(person));
+    }
+
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {

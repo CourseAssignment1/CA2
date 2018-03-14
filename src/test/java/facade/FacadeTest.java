@@ -47,18 +47,18 @@ public class FacadeTest {
     /**
      * Test of getPerson method, of class Facade.
      */
-    @org.junit.Test
-    public void testGetPerson() {
-        System.out.println("getPerson");
-        long id = 2;
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU2");
-        Facade instance = new Facade(emf);
-        String expFirstName = "Lise";
-        String expLastName = "Andersen";
-        Person result = instance.getPerson(id);
-        assertEquals(expFirstName, result.getFirstName());
-        assertEquals(expLastName, result.getLastName());
-    }
+//    @org.junit.Test
+//    public void testGetPerson() {
+//        System.out.println("getPerson");
+//        long id = 2;
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU2");
+//        Facade instance = new Facade(emf);
+//        String expFirstName = "Lise";
+//        String expLastName = "Andersen";
+//        Person result = instance.getPerson(id);
+//        assertEquals(expFirstName, result.getFirstName());
+//        assertEquals(expLastName, result.getLastName());
+//    }
 
     /**
      * Test of addPerson method, of class Facade.
