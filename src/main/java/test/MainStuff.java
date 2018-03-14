@@ -32,24 +32,30 @@ public class MainStuff {
 //        for (Phone phoneNumber : phoneNumbers) {
 //            System.out.println(phoneNumber.getDescription() + " : " + phoneNumber.getNumber());
 //        }
-        List<Person> testPersons = facade.getPersons();
-        for (Person testPerson : testPersons) {
-            System.out.println(testPerson.getFirstName() + " " + testPerson.getLastName());
-            System.out.println(testPerson.getAddress().getStreet() + " " + testPerson.getAddress().getAdditionalInfo());
-            System.out.println(testPerson.getAddress().getCityinfo().getZip() + " " + testPerson.getAddress().getCityinfo().getCity());
-            System.out.println(testPerson.getEmail());
-            List<Phone> phoneNumbers = testPerson.getPhoneNumbers();
-            for (Phone phoneNumber : phoneNumbers) {
-                System.out.println(phoneNumber.getDescription() + " : " + phoneNumber.getNumber());
-            }
-            List<Hobby> hobbies = testPerson.getHobbies();
-            for (Hobby hobby : hobbies) {
-                System.out.println(hobby.getName() + " : " + hobby.getDescription());
-            }
-            System.out.println("");
+//        List<Person> testPersons = facade.getPersons();
+//        for (Person testPerson : testPersons) {
+//            System.out.println(testPerson.getFirstName() + " " + testPerson.getLastName());
+//            System.out.println(testPerson.getAddress().getStreet() + " " + testPerson.getAddress().getAdditionalInfo());
+//            System.out.println(testPerson.getAddress().getCityinfo().getZip() + " " + testPerson.getAddress().getCityinfo().getCity());
+//            System.out.println(testPerson.getEmail());
+//            List<Phone> phoneNumbers = testPerson.getPhoneNumbers();
+//            for (Phone phoneNumber : phoneNumbers) {
+//                System.out.println(phoneNumber.getDescription() + " : " + phoneNumber.getNumber());
+//            }
+//            List<Hobby> hobbies = testPerson.getHobbies();
+//            for (Hobby hobby : hobbies) {
+//                System.out.println(hobby.getName() + " : " + hobby.getDescription());
+//            }
+//            System.out.println("");
+//        }
+//
+            Hobby hobby = facade.getHobby("Running");
+            
+            List<Person> pers = facade.getPersonsWithHobby("Running");
+         
+            for (Person per : pers) {
+                System.out.println(pers.toString());
         }
-        
-        
         
     }
 

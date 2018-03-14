@@ -46,7 +46,6 @@ public class Facade {
         em.getTransaction().begin();
         em.persist(person);
         em.getTransaction().commit();
-
     }
 
     //Lene
@@ -63,15 +62,25 @@ public class Facade {
     }
     
     //Mikkel
-    public List<Person> getPersonsWithHobby(Hobby hobby){
+    public List<Person> getPersonsWithHobby(String name){
         List<Person> persons = new ArrayList();
-        EntityManager em = emf.createEntityManager();
-        Query q1 = em.createQuery("SELECT p,h FROM Hobby h,Person p WHERE h.hobby = :hobby");
-        q1.setParameter("hobby", hobby.getId());
-        em.getTransaction().begin();
-        persons = (List<Person>) q1.getResultList();
-        em.getTransaction().commit();
+        Hobby hobby = getHobby(name);
+        persons = hobby.getPersons();
         return persons;
+    }
+    
+    public Hobby getHobby (String name){
+        Hobby hobby = new Hobby();
+        EntityManager em = emf.createEntityManager();
+        try{
+        Query q1 = em.createQuery("SELECT h FROM Hobby h WHERE h.name = :name");
+        q1.setParameter("name", name);
+        hobby = (Hobby) q1.getSingleResult();
+        }finally{
+            em.close();
+        }
+        return hobby;
+        
     }
     
     //Lene
@@ -90,15 +99,17 @@ public class Facade {
         return persons;
     }
     
-    //Mikkel
+    //Mikkel*
     public Company getCompany(long cvr){
         Company company = null;
         EntityManager em = emf.createEntityManager();
+        try{
         Query q1 = em.createQuery("SELECT c FROM Company c WHERE c.cvr = :cvr");
         q1.setParameter("cvr", cvr);
-        em.getTransaction().begin();
         company = (Company) q1.getSingleResult();
-        em.getTransaction().commit();
+        }finally{
+            em.close();
+        }
         return company;
     }
 
@@ -119,10 +130,10 @@ public class Facade {
     }
     
     //Mikkel
-    public int countPersonsWithHobby(Hobby hobby) {
+    public int countPersonsWithHobby(String name) {
         int count = 0;
-        ArrayList<Person> p = (ArrayList<Person>) getPersonsWithHobby(hobby);
-        count = p.size();
+        List<Person> pers = getPersonsWithHobby(name);
+        count = pers.size();
         return count;
     }
     
@@ -139,15 +150,17 @@ public class Facade {
         return cityInfos;
     }
     
-    //Mikkel
+    //Mikkel*
     public List<Company> getCompaniesWithMoreThanXEmployees(int amount) {
         List<Company> companies = new ArrayList();
         EntityManager em = emf.createEntityManager();
+        try{
         Query q1 = em.createQuery("SELECT c FROM Company c WHERE c.numEmployees = :amount");
         q1.setParameter("amount", amount);
-        em.getTransaction().begin();
-        companies = (List<Company>) q1.getResultList();
-        em.getTransaction().commit();
+        companies = q1.getResultList();
+        }finally{
+            em.close();
+        }
         return companies;
     }
 }
