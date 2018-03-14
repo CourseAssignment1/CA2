@@ -9,6 +9,7 @@ package test;
 import entities.Company;
 import entities.Person;
 import facade.Facade;
+import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -25,7 +26,11 @@ public class MainStuff {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU2");
         Facade facade = new Facade(emf);
 
-
+        List<Person> testPersons = facade.getPersons();
+        for (Person testPerson : testPersons) {
+        System.out.println(testPerson.getFirstName()+" "+testPerson.getLastName());   
+        }
+        
     }
 
 }
