@@ -32,7 +32,6 @@ public class MainStuff {
 //        for (Phone phoneNumber : phoneNumbers) {
 //            System.out.println(phoneNumber.getDescription() + " : " + phoneNumber.getNumber());
 //        }
-
         List<Person> testPersons = facade.getPersons();
         for (Person testPerson : testPersons) {
             System.out.println(testPerson.getFirstName() + " " + testPerson.getLastName());
@@ -49,6 +48,9 @@ public class MainStuff {
             }
             System.out.println("");
         }
+        
+        
+        
     }
 
 }
