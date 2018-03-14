@@ -75,11 +75,11 @@ public class Facade {
     }
     
     //Lene
-    public List<Person> getPersonsFromZip(CityInfo cityInfo){
+    public List<Person> getPersonsFromZip(String zip){
+        CityInfo cityInfo = getCityInfo(zip);
         EntityManager em = getEntityManager();
         List<Person> persons = new ArrayList();
         try{
-            //TODO: Jeg har ingen ide om denne query virker :S
             Query query = em.createQuery("SELECT p FROM Person p WHERE p.address.cityinfo = :cityinfo");
             query.setParameter("cityinfo",cityInfo);
             persons = query.getResultList();
@@ -88,6 +88,18 @@ public class Facade {
         }
         
         return persons;
+    }
+    public CityInfo getCityInfo(String zip){
+        EntityManager em = getEntityManager();
+        CityInfo ci = null;
+        try{
+            Query query = em.createQuery("SELECT ci FROM CityInfo ci WHERE ci.zip = :zip");
+            query.setParameter("zip",zip);
+            ci = (CityInfo)query.getSingleResult();
+        }finally{
+            em.close();
+        }
+        return ci;
     }
     
     //Mikkel
