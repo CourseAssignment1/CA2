@@ -30,7 +30,7 @@ public class PersonFullMessage implements JSONMessage<Person> {
     public String additionalInfo;
     public String zip;
     public String city;
-    public List<Long> hobbies;
+    public List<Long> hobbyList;
 
     public PersonFullMessage(Person person) {
         this.firstName = person.getFirstName();
@@ -43,13 +43,15 @@ public class PersonFullMessage implements JSONMessage<Person> {
         this.city = person.getAddress().getCityinfo().getCity();
         Stream<Hobby> HobbyEntities = person.getHobbies().stream();
         Stream<Long> hobbyIds = HobbyEntities.map(hobby -> hobby.getId());
-        this.hobbies = hobbyIds.collect(Collectors.toList());     
+        this.hobbyList = hobbyIds.collect(Collectors.toList());     
     }
 
     @Override
     public Person toInternal() {
-
-        return null;
+        CityInfo cityInfo = new CityInfo(zip, city);
+        Address address = new Address(street, additionalInfo, cityInfo);
+        List<Hobby> hobbies = null;
+        return (new Person(firstName, lastName, hobbies, mail, address, phoneNumbers));
     }
 
 }
