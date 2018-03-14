@@ -49,13 +49,19 @@ public class MainStuff {
 //            System.out.println("");
 //        }
 //
-            Hobby hobby = facade.getHobby("Running");
-            
-            List<Person> pers = facade.getPersonsWithHobby("Running");
-         
-            for (Person per : pers) {
-                System.out.println(pers.toString());
-        }
+//        CityInfo city = facade.getCityInfo("1127");
+//        System.out.println(city.getCity());
+//        List<Person> persons = facade.getPersonsFromZip(city);
+//        for(Person person : persons){
+//            System.out.println(person.getFirstName());
+//            System.out.println(person.getLastName());
+//            System.out.println(person.getAddress().getStreet());
+//            System.out.println("");
+//        }
+
+          Person p = facade.getPerson(14);
+          System.out.println(p.getFirstName() +" "+ p.getLastName());
+          System.out.println(p.getEmail());
         
     }
 
