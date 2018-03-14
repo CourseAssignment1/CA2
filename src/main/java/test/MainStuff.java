@@ -5,6 +5,8 @@
  */
 package test;
 
+
+import entities.Company;
 import entities.Person;
 import facade.Facade;
 import javax.persistence.EntityManagerFactory;
@@ -18,15 +20,12 @@ public class MainStuff {
 
     public static void main(String[] args) {
         
-        Persistence.generateSchema("dat3sem_CA2_war_1.0PU2", null);
+//        Persistence.generateSchema("dat3sem_CA2_war_1.0PU2", null);
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU2");
         Facade facade = new Facade(emf);
 
-       
-        //Person testPerson = new Person("Gert", "Madsen", null);
-        //facade.addPerson(testPerson);
-        
+
     }
 
 }

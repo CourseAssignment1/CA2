@@ -10,7 +10,14 @@ INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Gaming', 'Playing computer games
 INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Swimming', 'Indoor swimming');
 INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Football', 'Playing football');
 INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Painting', 'Making oil paintings');
-
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Knitting', 'Knitting clothes');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Gambling', 'Playing poker');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Chess', 'Playing chess');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Hiking', 'Hiking in the nature');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Singing', 'Singing in a choir');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Photographing', 'Taking pictures');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Sailing', 'Sailing on a boat');
+INSERT INTO HOBBY (NAME, DESCRIPTION ) VALUES ('Cooking', 'Making gourmet food');
 
 
 INSERT INTO CITYINFO (ZIP, CITY) VALUES ('0555', 'Scanning');
