@@ -49,7 +49,7 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-src/main/resources/META-INF
+src/main/resources/META-INF/
 
 ### Windows ###
 # Windows thumbnail cache files
