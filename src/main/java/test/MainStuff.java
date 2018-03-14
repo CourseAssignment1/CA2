@@ -20,7 +20,7 @@ public class MainStuff {
     public static void main(String[] args) {
 
 //        Persistence.generateSchema("dat3sem_CA2_war_1.0PU2", null);
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU2");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU3");
         Facade facade = new Facade(emf);
 
 //        Person testPerson = facade.getPerson(9);
@@ -48,7 +48,7 @@ public class MainStuff {
 //            }
 //            System.out.println("");
 //        }
-
+//
 //        CityInfo city = facade.getCityInfo("1127");
 //        System.out.println(city.getCity());
 //        List<Person> persons = facade.getPersonsFromZip(city);

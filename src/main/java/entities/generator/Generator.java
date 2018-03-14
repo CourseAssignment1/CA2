@@ -64,7 +64,7 @@ public class Generator {
 
     static int phoneCount;
     static int numbersOfHobbies = 20;
-    static int numbersOfZips = 1352;
+    static int numbersOfZips = 40;
     
 
     public static int randomNumber(int range) {
@@ -197,7 +197,7 @@ public class Generator {
     }
 
     public static void main(String[] args) {
-        String data = generateData(200);
+        String data = generateData(20);
         try {
             Writer out = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream("test_data.sql"), "UTF-8"));
