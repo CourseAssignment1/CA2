@@ -224,5 +224,31 @@ public class Facade {
         return companies;
     }
     
+    public Person getPersonByPhone(Phone phone){
+        EntityManager em = getEntityManager();
+        Person person = null;
+        try{
+            Query query = em.createQuery("SELECT p FROM Person p WHERE :phone MEMBER OF p.phoneNumbers");
+            query.setParameter("phone", phone);
+            person = (Person)query.getSingleResult();
+        }finally{
+            em.close();
+        }
+        return person;
+    }
+    
+    public Phone getPhone(String phoneNumber){
+        EntityManager em = getEntityManager();
+        Phone phone = null;
+        try{
+            Query query = em.createQuery("SELECT p FROM Phone p WHERE p.number = :phoneNumber");
+            query.setParameter("phoneNumber", phoneNumber);
+            phone = (Phone) query.getSingleResult();
+        }finally{
+            em.close();
+        }
+        return phone;
+    }
+    
     
 }

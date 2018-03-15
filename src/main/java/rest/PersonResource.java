@@ -78,6 +78,28 @@ public class PersonResource {
         Person person = facade.getPerson(id);          
         return MessageFacade.messagetoJson(new PersonContactMessage(person));
     }
+    
+    @Path("/hobby/{hobbyname}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAllByHobby(@PathParam("hobbyname") String name){
+        ArrayList<JSONMessage> messages = new ArrayList<>();
+        for(Person person : facade.getPersonsWithHobby(name)){
+            messages.add(new PersonFullMessage(person));
+        }
+        return MessageFacade.messageListtoJson(messages);
+    }
+    
+    @Path("/city/{zip}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAllByZip(@PathParam("zip") String zip){
+        ArrayList<JSONMessage> messages = new ArrayList<>();
+        for(Person person :facade.getPersonsFromZip(zip)){
+            messages.add(new PersonFullMessage(person));
+        }
+        return MessageFacade.messageListtoJson(messages);
+    }
 
 //    @PUT
 //    @Consumes(MediaType.APPLICATION_JSON)
