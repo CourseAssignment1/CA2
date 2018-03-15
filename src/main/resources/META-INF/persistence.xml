@@ -18,8 +18,5 @@
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
-<<<<<<< HEAD
-=======
-
 </persistence>
->>>>>>> 092fedfb10d0d462dc8e64e4eab06573b8be211e
+
