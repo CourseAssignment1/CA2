@@ -28,10 +28,10 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("person")
 public class PersonResource {
-
+    
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU");
     Facade facade = new Facade(emf);
-
+    
     @Context
     private UriInfo context;
 
@@ -40,7 +40,7 @@ public class PersonResource {
      */
     public PersonResource() {
     }
-
+    
     @Path("/complete")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -51,22 +51,23 @@ public class PersonResource {
         }
         return MessageFacade.messageListtoJson(messages);
     }
-
+    
     @Path("/complete/{personid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getPerson(@PathParam("personid") Long id) {
-        Person person = facade.getPerson(id);          
+        Person person = facade.getPerson(id);        
         return MessageFacade.messagetoJson(new PersonFullMessage(person));
     }
     
-//     @Path("/complete/{phonenumber}")
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String getPersonByPhone(@PathParam("phonenumber") String phone) {
-//        Person person = facade.getPerson(phone);          
-//        return MessageFacade.messagetoJson(new PersonFullMessage(person));
-//    }
+
+    @Path("/complete/phone/{phonenumber}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getPersonByPhone(@PathParam("phonenumber") String phone) {
+        Person person = facade.getPersonByPhone(phone);        
+        return MessageFacade.messagetoJson(new PersonFullMessage(person));
+    }
 
     @Path("/contactinfo")
     @GET
@@ -83,16 +84,16 @@ public class PersonResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getPersonInfo(@PathParam("personid") Long id) {
-        Person person = facade.getPerson(id);          
+        Person person = facade.getPerson(id);        
         return MessageFacade.messagetoJson(new PersonContactMessage(person));
     }
     
     @Path("/hobby/{hobbyname}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAllByHobby(@PathParam("hobbyname") String name){
+    public String getAllByHobby(@PathParam("hobbyname") String name) {
         ArrayList<JSONMessage> messages = new ArrayList<>();
-        for(Person person : facade.getPersonsWithHobby(name)){
+        for (Person person : facade.getPersonsWithHobby(name)) {
             messages.add(new PersonFullMessage(person));
         }
         return MessageFacade.messageListtoJson(messages);
@@ -101,9 +102,9 @@ public class PersonResource {
     @Path("/city/{zip}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAllByZip(@PathParam("zip") String zip){
+    public String getAllByZip(@PathParam("zip") String zip) {
         ArrayList<JSONMessage> messages = new ArrayList<>();
-        for(Person person :facade.getPersonsFromZip(zip)){
+        for (Person person : facade.getPersonsFromZip(zip)) {
             messages.add(new PersonFullMessage(person));
         }
         return MessageFacade.messageListtoJson(messages);

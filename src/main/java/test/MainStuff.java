@@ -74,8 +74,8 @@ public class MainStuff {
 //        System.out.println(p.getEmail());
 
             
-            Phone phone = facade.getPhone("97553432");
-            Person ie = facade.getPersonByPhone(phone);
+            
+            Person ie = facade.getPersonByPhone("97553432");
             System.out.println(ie.getFirstName());
 
     }
