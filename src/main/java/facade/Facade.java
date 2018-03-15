@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
+import rest.exceptions.*;
 
 /**
  *
@@ -36,6 +37,9 @@ public class Facade {
             person = em.find(Person.class,id);
         }finally{
             em.close();
+        }
+        if (person == null) {
+            throw new PersonNotFoundException("No person with provided id found");
         }
         return person;
     }
@@ -79,8 +83,21 @@ public class Facade {
         }finally{
             em.close();
         }
-        return hobby;
-        
+        return hobby;        
+    }
+    
+    //Gert
+    public Hobby getHobbyById(long id) {
+        Hobby hobby = new Hobby();
+        EntityManager em = emf.createEntityManager();
+        try{
+        Query q1 = em.createQuery("SELECT h FROM Hobby h WHERE h.id = :id");
+        q1.setParameter("id", id);
+        hobby = (Hobby) q1.getSingleResult();
+        }finally{
+            em.close();
+        }
+        return hobby;         
     }
     
     //Lene
@@ -122,6 +139,9 @@ public class Facade {
         }finally{
             em.close();
         }
+         if (company == null) {
+            throw new CompanyNotFoundException("No company with provided id found");
+        }       
         return company;
     }
 
@@ -175,4 +195,6 @@ public class Facade {
         }
         return companies;
     }
+    
+    
 }

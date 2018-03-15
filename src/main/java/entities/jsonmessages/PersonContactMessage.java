@@ -23,7 +23,6 @@ public class PersonContactMessage implements JSONMessage<Person> {
     public String lastName;
     public String mail;
     public List<Phone> phoneNumbers;
-    
 
     public PersonContactMessage(Person person) {
         this.id = person.getId();
@@ -31,12 +30,10 @@ public class PersonContactMessage implements JSONMessage<Person> {
         this.lastName = person.getLastName();
         this.mail = person.getEmail();
         this.phoneNumbers = person.getPhoneNumbers();
-          
     }
 
     @Override
     public Person toInternal() {
-
         return null;
     }
 
