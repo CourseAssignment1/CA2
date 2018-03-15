@@ -60,14 +60,15 @@ public class PersonResource {
         return MessageFacade.messagetoJson(new PersonFullMessage(person));
     }
     
-    @Path("/complete/{phonenumber}")
+
+    @Path("/complete/phone/{phonenumber}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getPersonByPhone(@PathParam("phonenumber") String phone) {
         Person person = facade.getPersonByPhone(phone);        
         return MessageFacade.messagetoJson(new PersonFullMessage(person));
     }
-    
+
     @Path("/contactinfo")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
