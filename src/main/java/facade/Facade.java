@@ -128,8 +128,36 @@ public class Facade {
         return ci;
     }
     
+    //Gert
+    public Company getCompany(long id) {
+        Company company = null;
+        EntityManager em = getEntityManager();
+        try{
+            company = em.find(Company.class,id);
+        }finally{
+            em.close();
+        }
+        if (company == null) {
+            throw new CompanyNotFoundException("No company with provided id found");
+        }
+        return company;
+    }
+    
+    //Gert
+    public List<Company> getCompanies(){
+        List<Company> companies = new ArrayList();
+        EntityManager em = getEntityManager();
+        try{
+            Query query = em.createQuery("SELECT c FROM Company c");
+            companies = query.getResultList();
+        }finally{
+            em.close();
+        }
+        return companies;
+    }
+
     //Mikkel*
-    public Company getCompany(long cvr){
+    public Company getCompanyFromCvr(long cvr){
         Company company = null;
         EntityManager em = emf.createEntityManager();
         try{
@@ -194,6 +222,33 @@ public class Facade {
             em.close();
         }
         return companies;
+    }
+    
+    public Person getPersonByPhone(String phoneNumber){
+        Phone phone = getPhone(phoneNumber);
+        EntityManager em = getEntityManager();
+        Person person = null;
+        try{
+            Query query = em.createQuery("SELECT p FROM Person p WHERE :phone MEMBER OF p.phoneNumbers");
+            query.setParameter("phone", phone);
+            person = (Person)query.getSingleResult();
+        }finally{
+            em.close();
+        }
+        return person;
+    }
+    
+    public Phone getPhone(String phoneNumber){
+        EntityManager em = getEntityManager();
+        Phone phone = null;
+        try{
+            Query query = em.createQuery("SELECT p FROM Phone p WHERE p.number = :phoneNumber");
+            query.setParameter("phoneNumber", phoneNumber);
+            phone = (Phone) query.getSingleResult();
+        }finally{
+            em.close();
+        }
+        return phone;
     }
     
     

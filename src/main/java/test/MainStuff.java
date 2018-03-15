@@ -73,6 +73,11 @@ public class MainStuff {
 //        System.out.println(p.getFirstName() + " " + p.getLastName());
 //        System.out.println(p.getEmail());
 
+            
+            
+            Person ie = facade.getPersonByPhone("97553432");
+            System.out.println(ie.getFirstName());
+
     }
 
 }
