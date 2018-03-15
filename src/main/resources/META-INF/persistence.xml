@@ -31,9 +31,9 @@
     <properties>
       <property name="javax.persistence.sql-load-script-source" value="SQLscripts/populate_test.sql"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ca2_test?zeroDateTimeBehavior=convertToNull"/>
-      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.user" value="Ramsbone"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="Herbert8900"/>
+      <property name="javax.persistence.jdbc.password" value="Akeelah1971"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>

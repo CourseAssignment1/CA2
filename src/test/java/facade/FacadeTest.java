@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
  */
 public class FacadeTest {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU2");
+//    EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU2");
 
     public FacadeTest() {
     }
