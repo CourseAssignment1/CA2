@@ -24,22 +24,25 @@ import static org.junit.Assert.*;
  * @author Gert Lehmann Madsen
  */
 public class FacadeTest {
-    
+
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU2");
+    Facade instance = new Facade(emf);
+
     public FacadeTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -47,18 +50,16 @@ public class FacadeTest {
     /**
      * Test of getPerson method, of class Facade.
      */
-//    @org.junit.Test
-//    public void testGetPerson() {
+    @org.junit.Test
+    public void testGetPerson() {
 //        System.out.println("getPerson");
 //        long id = 2;
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU2");
-//        Facade instance = new Facade(emf);
 //        String expFirstName = "Lise";
 //        String expLastName = "Andersen";
 //        Person result = instance.getPerson(id);
 //        assertEquals(expFirstName, result.getFirstName());
 //        assertEquals(expLastName, result.getLastName());
-//    }
+    }
 
     /**
      * Test of addPerson method, of class Facade.
@@ -72,7 +73,6 @@ public class FacadeTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-
     /**
      * Test of getPersons method, of class Facade.
      */
@@ -86,7 +86,6 @@ public class FacadeTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-
     /**
      * Test of getPersonsWithHobby method, of class Facade.
      */
@@ -101,7 +100,6 @@ public class FacadeTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-
     /**
      * Test of getPersonsFromZip method, of class Facade.
      */
@@ -116,7 +114,6 @@ public class FacadeTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-
     /**
      * Test of getCompany method, of class Facade.
      */
@@ -131,7 +128,6 @@ public class FacadeTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-
     /**
      * Test of addCompany method, of class Facade.
      */
@@ -146,7 +142,6 @@ public class FacadeTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-
     /**
      * Test of countPersonsWithHobby method, of class Facade.
      */
@@ -161,7 +156,6 @@ public class FacadeTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-
     /**
      * Test of getZips method, of class Facade.
      */
@@ -175,7 +169,6 @@ public class FacadeTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-
     /**
      * Test of getCompaniesWithMoreThanXEmployees method, of class Facade.
      */
@@ -190,5 +183,4 @@ public class FacadeTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-    
 }

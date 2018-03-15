@@ -79,8 +79,8 @@ public class PersonResource {
         return MessageFacade.messagetoJson(new PersonContactMessage(person));
     }
 
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
-    }
+//    @PUT
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public void putJson(String content) {
+//    }
 }

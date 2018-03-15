@@ -9,8 +9,6 @@ import entities.*;
 import facade.Facade;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 

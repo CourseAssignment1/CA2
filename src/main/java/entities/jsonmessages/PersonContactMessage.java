@@ -5,12 +5,8 @@
  */
 package entities.jsonmessages;
 
-import entities.Hobby;
-import entities.Person;
-import entities.Phone;
+import entities.*;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  *
