@@ -6,12 +6,8 @@
 package rest;
 
 import entities.*;
-import entities.jsonmessages.JSONMessage;
-import entities.jsonmessages.MessageFacade;
-import entities.jsonmessages.PersonContactMessage;
-import entities.jsonmessages.PersonFullMessage;
+import entities.jsonmessages.*;
 import facade.Facade;
-import java.util.ArrayList;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
@@ -79,7 +75,7 @@ public class CompanyResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getCompanyInfo(@PathParam("companyid") Long id) {
         Company company = facade.getCompany(id);
-        return MessageFacade.messagetoJson(new PersonContactMessage(company));
+        return MessageFacade.messagetoJson(new CompanyContactMessage(company));
     }
 
 }
