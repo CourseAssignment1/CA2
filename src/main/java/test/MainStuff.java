@@ -6,6 +6,7 @@
 package test;
 
 import entities.*;
+import entities.jsonmessages.PersonFullMessage;
 import facade.Facade;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -23,28 +24,37 @@ public class MainStuff {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU");
         Facade facade = new Facade(emf);
 
-//        Person testPerson = facade.getPerson(9);
-//        System.out.println(testPerson.getFirstName()+" "+testPerson.getLastName());
-//        System.out.println(testPerson.getAddress().getStreet()+ " "+testPerson.getAddress().getAdditionalInfo());
+//        Person testPerson = facade.getPerson(2);
+//        System.out.println("This is person 2");
+//        System.out.println(testPerson.getFirstName() + " " + testPerson.getLastName());
+//        System.out.println(testPerson.getAddress().getStreet() + " " + testPerson.getAddress().getAdditionalInfo());
 //        System.out.println(testPerson.getAddress().getCityinfo().getZip() + " " + testPerson.getAddress().getCityinfo().getCity());
 //        System.out.println(testPerson.getEmail());
 //        List<Phone> phoneNumbers = testPerson.getPhoneNumbers();
 //        for (Phone phoneNumber : phoneNumbers) {
 //            System.out.println(phoneNumber.getDescription() + " : " + phoneNumber.getNumber());
 //        }
+//        List<Hobby> hobbies = testPerson.getHobbies();
+//        for (Hobby hobby : hobbies) {
+//            System.out.println("Hobby: " + hobby.getName() + " : " + hobby.getDescription());
+//        }
+
+
+
 //        List<Person> testPersons = facade.getPersons();
 //        for (Person testPerson : testPersons) {
-//            System.out.println(testPerson.getFirstName() + " " + testPerson.getLastName());
-//            System.out.println(testPerson.getAddress().getStreet() + " " + testPerson.getAddress().getAdditionalInfo());
-//            System.out.println(testPerson.getAddress().getCityinfo().getZip() + " " + testPerson.getAddress().getCityinfo().getCity());
-//            System.out.println(testPerson.getEmail());
+//            System.out.println("Id: "+testPerson.getId());
+//            System.out.println("Name: "+testPerson.getFirstName() + " " + testPerson.getLastName());
+//            System.out.println("Address: "+testPerson.getAddress().getStreet() + " " + testPerson.getAddress().getAdditionalInfo());
+//            System.out.println("Zip/City: "+testPerson.getAddress().getCityinfo().getZip() + " " + testPerson.getAddress().getCityinfo().getCity());
+//            System.out.println("Mail: "+testPerson.getEmail());
 //            List<Phone> phoneNumbers = testPerson.getPhoneNumbers();
 //            for (Phone phoneNumber : phoneNumbers) {
-//                System.out.println(phoneNumber.getDescription() + " : " + phoneNumber.getNumber());
+//                System.out.println("Phone: "+phoneNumber.getDescription() + " : " + phoneNumber.getNumber());
 //            }
 //            List<Hobby> hobbies = testPerson.getHobbies();
 //            for (Hobby hobby : hobbies) {
-//                System.out.println(hobby.getName() + " : " + hobby.getDescription());
+//                System.out.println("Hobby: "+hobby.getName() + " : " + hobby.getDescription());
 //            }
 //            System.out.println("");
 //        }
@@ -58,11 +68,11 @@ public class MainStuff {
 //            System.out.println(person.getAddress().getStreet());
 //            System.out.println("");
 //        }
+//
+//        Person p = facade.getPerson(14);
+//        System.out.println(p.getFirstName() + " " + p.getLastName());
+//        System.out.println(p.getEmail());
 
-          Person p = facade.getPerson(14);
-          System.out.println(p.getFirstName() +" "+ p.getLastName());
-          System.out.println(p.getEmail());
-        
     }
 
 }
