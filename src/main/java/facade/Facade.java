@@ -52,6 +52,16 @@ public class Facade {
         em.getTransaction().commit();
     }
 
+    //Gert
+    public void removePerson(Person person) {
+        EntityManager em = getEntityManager();
+        try{
+            em.remove(person);
+        }finally{
+            em.close();
+        }
+    }
+
     //Lene
     public List<Person> getPersons(){
         List<Person> persons = new ArrayList();
@@ -187,6 +197,16 @@ public class Facade {
             em.close();
         }
         return result;
+    }
+    
+    //Gert
+    public void removeCompany(Company company) {
+        EntityManager em = getEntityManager();
+        try{
+            em.remove(company);
+        }finally{
+            em.close();
+        }
     }
     
     //Mikkel
