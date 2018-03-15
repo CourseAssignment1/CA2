@@ -25,8 +25,7 @@ import static org.junit.Assert.*;
  */
 public class FacadeTest {
 
-//    EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU2");
-//    Facade instance = new Facade(emf);
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU2");
 
     public FacadeTest() {
     }
@@ -50,16 +49,17 @@ public class FacadeTest {
     /**
      * Test of getPerson method, of class Facade.
      */
-//    @org.junit.Test
-//    public void testGetPerson() {
-//        System.out.println("getPerson");
-//        long id = 2;
-//        String expFirstName = "Lise";
-//        String expLastName = "Andersen";
-//        Person result = instance.getPerson(id);
-//        assertEquals(expFirstName, result.getFirstName());
-//        assertEquals(expLastName, result.getLastName());
-//    }
+    @org.junit.Test
+    public void testGetPerson() {
+        System.out.println("Testing: getPerson in Facade.class");
+        Facade instance = new Facade(emf);
+        long id = 3;
+        String expFirstName = "Mads";
+        String expLastName = "Flintholm";
+        Person result = instance.getPerson(id);
+        assertEquals(expFirstName, result.getFirstName());
+        assertEquals(expLastName, result.getLastName());
+    }
 
     /**
      * Test of addPerson method, of class Facade.
@@ -76,16 +76,16 @@ public class FacadeTest {
     /**
      * Test of getPersons method, of class Facade.
      */
-//    @org.junit.Test
-//    public void testGetPersons() {
-//        System.out.println("getPersons");
-//        Facade instance = null;
-//        List<Person> expResult = null;
-//        List<Person> result = instance.getPersons();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @org.junit.Test
+    public void testGetPersons() {
+        System.out.println("Testing: getPersons in Facade.class");
+        Facade instance = new Facade(emf);
+        int expResult = 11;
+        List<Person> persons = instance.getPersons();
+        int result = persons.size();
+        assertEquals(expResult, result);
+    }
+    
     /**
      * Test of getPersonsWithHobby method, of class Facade.
      */
@@ -117,17 +117,23 @@ public class FacadeTest {
     /**
      * Test of getCompany method, of class Facade.
      */
-//    @org.junit.Test
-//    public void testGetCompany() {
-//        System.out.println("getCompany");
-//        long cvr = 0L;
-//        Facade instance = null;
-//        Company expResult = null;
-//        Company result = instance.getCompany(cvr);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @org.junit.Test
+    public void testGetCompany() {
+        System.out.println("Testing: getCompany in Facade.class");
+        long id = 1;
+        Facade instance = new Facade(emf);
+        String expName = "SiriusCell";
+        String expDescription = "Hardware";
+        long expCvr = 43253429;
+        int expNumEmployees = 56;
+        long expMarketValue = 788942612;
+        Company result = instance.getCompany(id);
+        assertEquals(expName, result.getName());
+        assertEquals(expDescription, result.getDescription());
+        assertEquals(expCvr, result.getCvr());
+        assertEquals(expNumEmployees, result.getNumEmployees());
+        assertEquals(expMarketValue, result.getMarketValue());
+    }
     /**
      * Test of addCompany method, of class Facade.
      */
