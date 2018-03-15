@@ -224,7 +224,8 @@ public class Facade {
         return companies;
     }
     
-    public Person getPersonByPhone(Phone phone){
+    public Person getPersonByPhone(String phoneNumber){
+        Phone phone = getPhone(phoneNumber);
         EntityManager em = getEntityManager();
         Person person = null;
         try{
