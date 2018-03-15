@@ -8,6 +8,7 @@ package rest;
 import entities.*;
 import entities.jsonmessages.*;
 import facade.Facade;
+import java.util.ArrayList;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
@@ -40,35 +41,35 @@ public class CompanyResource {
     public CompanyResource() {
     }
 
-//    @Path("/complete")
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String getAllCompanies() {
-//        ArrayList<JSONMessage> messages = new ArrayList<>();
-//        for (Person person : facade.getPersons()) {
-//            messages.add(new PersonFullMessage(person));
-//        }
-//        return MessageFacade.messageListtoJson(messages);
-//    }
-
-    @Path("/complete/{personid}")
+    @Path("/complete")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getCompany(@PathParam("personid") Long id) {
+    public String getAllCompanies() {
+        ArrayList<JSONMessage> messages = new ArrayList<>();
+        for (Company company : facade.getCompanies()) {
+            messages.add(new CompanyContactMessage(company));
+        }
+        return MessageFacade.messageListtoJson(messages);
+    }
+
+    @Path("/complete/{companyid}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCompany(@PathParam("companyid") Long id) {
         Company company = facade.getCompany(id);
         return MessageFacade.messagetoJson(new CompanyFullMessage(company));
     }
 
-//    @Path("/contactinfo")
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String getAllCompaniesInfo() {
-//        ArrayList<JSONMessage> messages = new ArrayList<>();
-//        for (Person person : facade.getPersons()) {
-//            messages.add(new PersonContactMessage(person));
-//        }
-//        return MessageFacade.messageListtoJson(messages);
-//    }
+    @Path("/contactinfo")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAllCompaniesInfo() {
+        ArrayList<JSONMessage> messages = new ArrayList<>();
+        for (Company company : facade.getCompanies()) {
+            messages.add(new CompanyContactMessage(company));
+        }
+        return MessageFacade.messageListtoJson(messages);
+    }
 
     @Path("/contactinfo/{companyid}")
     @GET

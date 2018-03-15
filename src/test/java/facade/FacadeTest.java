@@ -25,8 +25,8 @@ import static org.junit.Assert.*;
  */
 public class FacadeTest {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU2");
-    Facade instance = new Facade(emf);
+//    EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU2");
+//    Facade instance = new Facade(emf);
 
     public FacadeTest() {
     }
@@ -50,8 +50,8 @@ public class FacadeTest {
     /**
      * Test of getPerson method, of class Facade.
      */
-    @org.junit.Test
-    public void testGetPerson() {
+//    @org.junit.Test
+//    public void testGetPerson() {
 //        System.out.println("getPerson");
 //        long id = 2;
 //        String expFirstName = "Lise";
@@ -59,7 +59,7 @@ public class FacadeTest {
 //        Person result = instance.getPerson(id);
 //        assertEquals(expFirstName, result.getFirstName());
 //        assertEquals(expLastName, result.getLastName());
-    }
+//    }
 
     /**
      * Test of addPerson method, of class Facade.

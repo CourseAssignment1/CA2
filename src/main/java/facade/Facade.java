@@ -128,8 +128,36 @@ public class Facade {
         return ci;
     }
     
+    //Gert
+    public Company getCompany(long id) {
+        Company company = null;
+        EntityManager em = getEntityManager();
+        try{
+            company = em.find(Company.class,id);
+        }finally{
+            em.close();
+        }
+        if (company == null) {
+            throw new CompanyNotFoundException("No company with provided id found");
+        }
+        return company;
+    }
+    
+    //Gert
+    public List<Company> getCompanies(){
+        List<Company> companies = new ArrayList();
+        EntityManager em = getEntityManager();
+        try{
+            Query query = em.createQuery("SELECT c FROM Company c");
+            companies = query.getResultList();
+        }finally{
+            em.close();
+        }
+        return companies;
+    }
+
     //Mikkel*
-    public Company getCompany(long cvr){
+    public Company getCompanyFromCvr(long cvr){
         Company company = null;
         EntityManager em = emf.createEntityManager();
         try{
