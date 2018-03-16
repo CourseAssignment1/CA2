@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rest.exceptions;
+package rest.exceptions.mappers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,29 +12,27 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
+import rest.exceptions.CompanyNotFoundException;
+import rest.exceptions.ErrorMessage;
 
 /**
  *
  * @author Gert Lehmann Madsen
  */
-
-@Provider
-public class RuntimeExceptionMapper implements ExceptionMapper<RuntimeException>{
+public class CompanyNotFoundExceptionMapper implements ExceptionMapper<CompanyNotFoundException>{
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Context
     ServletContext context;
     
     @Override
-    public Response toResponse(RuntimeException ex) {
+    public Response toResponse(CompanyNotFoundException ex) {
         boolean isDebug = context.getInitParameter("debug").equals("true");
-        ErrorMessage err = new ErrorMessage(ex,500,isDebug);
-        err.setDescription("Internal Server Problem. We are sorry for the inconvenience");
-        return Response.status(500)
+        ErrorMessage err = new ErrorMessage(ex,404,isDebug);
+        err.setDescription("");
+        return Response.status(404)
                 .entity(gson.toJson(err))
                 .type(MediaType.APPLICATION_JSON)
                 .build();
-    }
-
+    }        
 }

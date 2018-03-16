@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rest.exceptions;
+package rest.exceptions.mappers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,19 +12,21 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
+import rest.exceptions.ErrorMessage;
+import rest.exceptions.PhoneNotFoundException;
 
 /**
  *
- * @author lene_
+ * @author Gert Lehmann Madsen
  */
-public class ZipNotFoundExceptionMapper implements ExceptionMapper<ZipNotFoundException>{
+public class PhoneNotFoundExceptionMapper implements ExceptionMapper<PhoneNotFoundException>{
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Context
     ServletContext context;
     
     @Override
-    public Response toResponse(ZipNotFoundException ex) {
+    public Response toResponse(PhoneNotFoundException ex) {
         boolean isDebug = context.getInitParameter("debug").equals("true");
         ErrorMessage err = new ErrorMessage(ex,404,isDebug);
         err.setDescription("");

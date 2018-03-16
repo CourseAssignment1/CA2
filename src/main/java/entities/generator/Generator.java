@@ -29,10 +29,10 @@ public class Generator {
 
     static String[] lNames = {"Jensen", "Hansen", "Madsen", "Persson", "Nielsen", "Skov",
         "Edberg", "Flintholm", "Graversen", "Poulsen", "Torp", "Svendsen",
-        "Sørensen", "Ardberg", "Friis", "Larsem", "Bentholm", "Lehmann",
+        "Sørensen", "Ardberg", "Friis", "Larsen", "Bentholm", "Lehmann",
         "Wiksøe", "Eilersen", "Rosenberg", "Kristensen", "Meinholt",
         "Andersen", "Brobjerg", "Berg", "Carstensen", "Frandsen", "Møller",
-        "Underberg", "Troelsen", "Olsen", "Klausen", "Ålbæk"};
+        "Underberg", "Troelsen", "Olsen", "Klausen", "Ålbæk","Lindstrøm", "Lehmann"};
 
     static String[] streets = {"Vestergade", "Østergade", "Søndegade", "Nørregade",
         "Hovedgaden", "Strandvejen", "Stationsvej", "Lærkevej", "Bredgade",
@@ -197,7 +197,7 @@ public class Generator {
     }
 
     public static void main(String[] args) {
-        String data = generateData(20);
+        String data = generateData(200);
         try {
             Writer out = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream("test_data.sql"), "UTF-8"));

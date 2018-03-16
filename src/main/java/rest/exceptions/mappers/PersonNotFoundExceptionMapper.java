@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rest.exceptions;
+package rest.exceptions.mappers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,19 +12,24 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
+import rest.exceptions.ErrorMessage;
+import rest.exceptions.PersonNotFoundException;
 
 /**
  *
  * @author Gert Lehmann Madsen
  */
-public class CompanyNotFoundExceptionMapper implements ExceptionMapper<CompanyNotFoundException>{
+
+@Provider
+public class PersonNotFoundExceptionMapper implements ExceptionMapper<PersonNotFoundException>{
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Context
     ServletContext context;
     
     @Override
-    public Response toResponse(CompanyNotFoundException ex) {
+    public Response toResponse(PersonNotFoundException ex) {
         boolean isDebug = context.getInitParameter("debug").equals("true");
         ErrorMessage err = new ErrorMessage(ex,404,isDebug);
         err.setDescription("");
@@ -32,5 +37,7 @@ public class CompanyNotFoundExceptionMapper implements ExceptionMapper<CompanyNo
                 .entity(gson.toJson(err))
                 .type(MediaType.APPLICATION_JSON)
                 .build();
-    }        
+    }
+    
+    
 }

@@ -46,6 +46,9 @@ public class Facade {
 
     //Mikkel
     public void addPerson(Person person) {
+        if (person.getFirstName() == null || person.getLastName() == null) {
+            throw new ValidationErrorException("First Name or Last Name is missing");
+        }
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         String zip = person.getAddress().getCityinfo().getZip();
@@ -80,16 +83,17 @@ public class Facade {
             em.close();
         }
     }
-    
-    public Person updatePerson(Person person){
+
+    public Person updatePerson(Person person) {
+        
         EntityManager em = getEntityManager();
         Person result = null;
-        try{
+        try {
             em.getTransaction().begin();
             em.merge(person);
             em.getTransaction().commit();
             result = person;
-        }finally{
+        } finally {
             em.close();
         }
         return result;
@@ -132,15 +136,9 @@ public class Facade {
         return hobby;
     }
 
-
     //Lene
     public List<Person> getPersonsFromZip(String zip) {
-        CityInfo cityInfo = null;
-        try {
-            cityInfo = getCityInfo(zip);
-        } catch (Exception ex) {
-            throw new ZipNotFoundException("The given zip does not exist.");
-        }
+        CityInfo cityInfo = getCityInfo(zip);
         EntityManager em = getEntityManager();
         List<Person> persons = new ArrayList();
         try {
@@ -274,13 +272,20 @@ public class Facade {
     }
 
     public Person getPersonByPhone(String phoneNumber) {
-        Phone phone = getPhone(phoneNumber);
-        EntityManager em = getEntityManager();
+        Phone phone = null;
+        try {
+            phone = getPhone(phoneNumber);
+        } catch (Exception ex) {
+            throw new PhoneNotFoundException("The given phone number does not exist.");
+        }        EntityManager em = getEntityManager();
         Person person = null;
         try {
             Query query = em.createQuery("SELECT p FROM Person p WHERE :phone MEMBER OF p.phoneNumbers");
             query.setParameter("phone", phone);
             person = (Person) query.getSingleResult();
+            if (person == null) {
+                throw new PersonNotFoundException("No person with provided phone number found");
+            }
         } finally {
             em.close();
         }
@@ -288,13 +293,21 @@ public class Facade {
     }
 
     public Company getCompanyByPhone(String phoneNumber) {
-        Phone phone = getPhone(phoneNumber);
+        Phone phone = null;
+        try {
+            phone = getPhone(phoneNumber);
+        } catch (Exception ex) {
+            throw new PhoneNotFoundException("The given phone number does not exist.");
+        }
         EntityManager em = getEntityManager();
         Company company = null;
         try {
             Query query = em.createQuery("SELECT c FROM Company c WHERE :phone MEMBER OF c.phoneNumbers");
             query.setParameter("phone", phone);
             company = (Company) query.getSingleResult();
+            if (company == null) {
+                throw new CompanyNotFoundException("No company with provided phone number found");
+            }
         } finally {
             em.close();
         }
