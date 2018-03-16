@@ -36,30 +36,41 @@ function fetchFromServer(radio) {
 
 function toTableContact(data) {
     var list = '<thead><th> Name </th><th>Mail</th><th>Phone</thead>';
-     list += data.map(function (company) {
-           return '<tr><td>' + company.name + '</td>'
+    list += data.map(function (company) {
+        var numbersStr = company.phoneNumbers.reduce(reduceToString, "");
+        return '<tr><td>' + company.name + '</td>'
                 + '<td>' + company.mail + '</td>'
-                + '<td>' + company.phoneNumbers[0].number + '</td>'
-                + '</tr>';
+                + '<td>' + numbersStr + '</td>'
+                +
+                +'</tr>';
     });
 
     document.getElementById("tblbody").innerHTML = list;
 }
 function toTableComplete(data) {
     var list = '<thead><th>Name</th><th>Description</th><th>Cvr</th><th>Number of Emp</th><th>MarketValue</th><th>Mail</th><th>Phone Numbers</th><th>Street</th><th>Zip</th><th>City</th></thead>';
-     list += data.map(function (company) {
-           return '<tr><td>' + company.name + '</td>'
+    list += data.map(function (company) {
+        var numbersStr = company.phoneNumbers.reduce(reduceToString, "");
+        return '<tr><td>' + company.name + '</td>'
                 + '<td>' + company.description + '</td>'
                 + '<td>' + company.cvr + '</td>'
                 + '<td>' + company.numEmployees + '</td>'
                 + '<td>' + company.marketValue + '</td>'
                 + '<td>' + company.mail + '</td>'
-                + '<td>' + company.phoneNumbers.number.join(", ") + '</td>'
+                + '<td>' + numbersStr + '</td>'
                 + '<td>' + company.street + '</td>'
                 + '<td>' + company.zip + '</td>'
                 + '<td>' + company.city + '</td>';
-                + '</tr>';
+                +'</tr>';
     });
 
     document.getElementById("tblbody").innerHTML = list;
+}
+
+function reduceToString(acc, obj, index, arr) {
+    if (index < arr.length - 1) {
+        return acc + obj.number + " (" + obj.description + ")<br>";
+    } else {
+        return acc + obj.number + " (" + obj.description + ")";
+    }
 }
