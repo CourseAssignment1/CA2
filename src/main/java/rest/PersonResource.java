@@ -122,8 +122,9 @@ public class PersonResource {
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
-        
+    public void updatePerson(String json) {
+        Person person = MessageFacade.fromJson(json, PersonFullMessage.class);
+        facade.updatePerson(person);
     }
     
     @POST
