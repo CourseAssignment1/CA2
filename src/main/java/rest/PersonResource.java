@@ -114,10 +114,11 @@ public class PersonResource {
         return MessageFacade.messageListtoJson(messages);
     }
 
-//    @PUT
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public void putJson(String content) {
-//    }
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void putJson(String content) {
+        
+    }
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
