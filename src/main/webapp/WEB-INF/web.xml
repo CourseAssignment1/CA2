@@ -12,7 +12,7 @@
     <context-param>
         <description>If true, the stack trace is included with error responses</description>
         <param-name>debug</param-name>
-        <param-value>true</param-value>
+        <param-value>false</param-value>
     </context-param>
 
 </web-app>
