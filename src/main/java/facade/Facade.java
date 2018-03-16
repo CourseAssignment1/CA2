@@ -138,12 +138,7 @@ public class Facade {
 
     //Lene
     public List<Person> getPersonsFromZip(String zip) {
-        CityInfo cityInfo = null;
-        try {
-            cityInfo = getCityInfo(zip);
-        } catch (Exception ex) {
-            throw new ZipNotFoundException("The given zip does not exist.");
-        }
+        CityInfo cityInfo = getCityInfo(zip);
         EntityManager em = getEntityManager();
         List<Person> persons = new ArrayList();
         try {
@@ -282,8 +277,7 @@ public class Facade {
             phone = getPhone(phoneNumber);
         } catch (Exception ex) {
             throw new PhoneNotFoundException("The given phone number does not exist.");
-        }
-        EntityManager em = getEntityManager();
+        }        EntityManager em = getEntityManager();
         Person person = null;
         try {
             Query query = em.createQuery("SELECT p FROM Person p WHERE :phone MEMBER OF p.phoneNumbers");

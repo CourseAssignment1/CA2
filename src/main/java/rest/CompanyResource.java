@@ -83,7 +83,7 @@ public class CompanyResource {
         return MessageFacade.messageListtoJson(messages);
     }
 
-    @Path("/complete/phone/{phonenumber}")
+    @Path("/phone/{phonenumber}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getCompanyByPhone(@PathParam("phonenumber") String phone) {
@@ -93,7 +93,7 @@ public class CompanyResource {
         return MessageFacade.messageListtoJson(messages);
     }
 
-    @Path("/complete/cvr/{cvrnumber}")
+    @Path("/cvr/{cvrnumber}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getCompanyByCvr(@PathParam("cvrnumber") Long cvr) {
@@ -103,7 +103,7 @@ public class CompanyResource {
         return MessageFacade.messageListtoJson(messages);
     }
 
-    @Path("/complete/employees/{number}")
+    @Path("/employees/{number}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getCompanyByNumOfEmployees(@PathParam("number") int amount) {
