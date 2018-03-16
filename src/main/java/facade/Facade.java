@@ -52,6 +52,16 @@ public class Facade {
         em.getTransaction().commit();
     }
 
+    //Gert
+    public void removePerson(Person person) {
+        EntityManager em = getEntityManager();
+        try{
+            em.remove(person);
+        }finally{
+            em.close();
+        }
+    }
+
     //Lene
     public List<Person> getPersons(){
         List<Person> persons = new ArrayList();
@@ -189,6 +199,16 @@ public class Facade {
         return result;
     }
     
+    //Gert
+    public void removeCompany(Company company) {
+        EntityManager em = getEntityManager();
+        try{
+            em.remove(company);
+        }finally{
+            em.close();
+        }
+    }
+    
     //Mikkel
     public int countPersonsWithHobby(String name) {
         int count = 0;
@@ -215,7 +235,7 @@ public class Facade {
         List<Company> companies = new ArrayList();
         EntityManager em = emf.createEntityManager();
         try{
-        Query q1 = em.createQuery("SELECT c FROM Company c WHERE c.numEmployees = :amount");
+        Query q1 = em.createQuery("SELECT c FROM Company c WHERE c.numEmployees >= :amount");
         q1.setParameter("amount", amount);
         companies = q1.getResultList();
         }finally{
@@ -236,6 +256,20 @@ public class Facade {
             em.close();
         }
         return person;
+    }
+    
+    public Company getCompanyByPhone(String phoneNumber){
+        Phone phone = getPhone(phoneNumber);
+        EntityManager em = getEntityManager();
+        Company company = null;
+        try{
+            Query query = em.createQuery("SELECT c FROM Company c WHERE :phone MEMBER OF c.phoneNumbers");
+            query.setParameter("phone", phone);
+            company = (Company) query.getSingleResult();
+        }finally{
+            em.close();
+        }
+        return company;
     }
     
     public Phone getPhone(String phoneNumber){

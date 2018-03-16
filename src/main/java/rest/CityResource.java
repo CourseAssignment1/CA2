@@ -5,6 +5,16 @@
  */
 package rest;
 
+import entities.CityInfo;
+import entities.Person;
+import entities.jsonmessages.CityMessage;
+import entities.jsonmessages.JSONMessage;
+import entities.jsonmessages.MessageFacade;
+import entities.jsonmessages.PersonContactMessage;
+import facade.Facade;
+import java.util.ArrayList;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -21,6 +31,8 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("city")
 public class CityResource {
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("dat3sem_CA2_war_1.0PU");
+    Facade facade = new Facade(emf);
 
     @Context
     private UriInfo context;
@@ -35,11 +47,15 @@ public class CityResource {
      * Retrieves representation of an instance of rest.CityResource
      * @return an instance of java.lang.String
      */
+    @Path("/all")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJson() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
+    public String getAllPersonsInfo() {
+        ArrayList<JSONMessage> messages = new ArrayList<>();
+        for (CityInfo ci : facade.getZips()) {
+            messages.add(new CityMessage(ci));
+        }
+        return MessageFacade.messageListtoJson(messages);
     }
 
     /**

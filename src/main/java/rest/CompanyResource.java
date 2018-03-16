@@ -78,5 +78,32 @@ public class CompanyResource {
         Company company = facade.getCompany(id);
         return MessageFacade.messagetoJson(new CompanyContactMessage(company));
     }
-
+    
+    @Path("/complete/phone/{phonenumber}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCompanyByPhone(@PathParam("phonenumber") String phone) {
+        Company company = facade.getCompanyByPhone(phone);        
+        return MessageFacade.messagetoJson(new CompanyFullMessage(company));
+    }
+    
+    @Path("/complete/cvr/{cvrnumber}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCompanyByCvr(@PathParam("cvrnumber") Long cvr) {
+        Company company = facade.getCompanyFromCvr(cvr);
+        return MessageFacade.messagetoJson(new CompanyFullMessage(company));
+    }
+    
+    @Path("/complete/employees/{number}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCompanyByNumOfEmployees(@PathParam("number") int amount) {
+        ArrayList<JSONMessage> messages = new ArrayList<>();
+        for (Company company : facade.getCompaniesWithMoreThanXEmployees(amount)) {
+            messages.add(new CompanyFullMessage(company));
+        }
+        return MessageFacade.messageListtoJson(messages);
+    }
+    
 }

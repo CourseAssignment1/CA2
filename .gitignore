@@ -51,6 +51,10 @@ nbdist/
 .nb-gradle/
 src/main/resources/META-INF/
 src/main/resources/META-INF/persistence.xml
+src/test/resources/META-INF/
+src/test/resources/META-INF/persistence.xml
+
+
 
 ### Windows ###
 # Windows thumbnail cache files
