@@ -80,6 +80,20 @@ public class Facade {
             em.close();
         }
     }
+    
+    public Person updatePerson(Person person){
+        EntityManager em = getEntityManager();
+        Person result = null;
+        try{
+            em.getTransaction().begin();
+            em.merge(person);
+            em.getTransaction().commit();
+            result = person;
+        }finally{
+            em.close();
+        }
+        return result;
+    }
 
     //Lene
     public List<Person> getPersons() {
