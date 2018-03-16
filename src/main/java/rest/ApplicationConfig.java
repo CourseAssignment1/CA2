@@ -32,10 +32,10 @@ public class ApplicationConfig extends Application {
         resources.add(rest.CityResource.class);
         resources.add(rest.CompanyResource.class);
         resources.add(rest.PersonResource.class);
-        resources.add(rest.exceptions.NonExistingServiceExceptionMapper.class);
-        resources.add(rest.exceptions.PersonNotFoundExceptionMapper.class);
-        resources.add(rest.exceptions.RuntimeExceptionMapper.class);
-        resources.add(rest.exceptions.ValidationErrorExceptionMapper.class);
+        resources.add(rest.exceptions.mappers.NonExistingServiceExceptionMapper.class);
+        resources.add(rest.exceptions.mappers.PersonNotFoundExceptionMapper.class);
+        resources.add(rest.exceptions.mappers.RuntimeExceptionMapper.class);
+        resources.add(rest.exceptions.mappers.ValidationErrorExceptionMapper.class);
     }
     
 }

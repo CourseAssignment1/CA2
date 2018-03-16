@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rest.exceptions;
+package rest.exceptions.mappers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,28 +12,29 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
+import rest.exceptions.ErrorMessage;
+import rest.exceptions.HobbyNotFoundException;
 
 /**
  *
  * @author Gert Lehmann Madsen
  */
-@Provider
-public class ValidationErrorExceptionMapper implements ExceptionMapper<ValidationErrorException>{
+public class HobbyNotFoundExceptionMapper implements ExceptionMapper<HobbyNotFoundException>{
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Context
     ServletContext context;
     
     @Override
-    public Response toResponse(ValidationErrorException ex) {
+    public Response toResponse(HobbyNotFoundException ex) {
         boolean isDebug = context.getInitParameter("debug").equals("true");
-        ErrorMessage err = new ErrorMessage(ex,400,isDebug);
+        ErrorMessage err = new ErrorMessage(ex,404,isDebug);
         err.setDescription("");
-        return Response.status(400)
+        return Response.status(404)
                 .entity(gson.toJson(err))
                 .type(MediaType.APPLICATION_JSON)
                 .build();
     }
+    
     
 }
