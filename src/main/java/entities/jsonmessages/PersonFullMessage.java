@@ -27,6 +27,7 @@ public class PersonFullMessage implements JSONMessage<Person> {
     public String zip;
     public String city;
     public List<String> hobbyList = new ArrayList();
+    public Long id;
 
     public PersonFullMessage(Person person) {
         this.firstName = person.getFirstName();
@@ -37,7 +38,9 @@ public class PersonFullMessage implements JSONMessage<Person> {
         this.additionalInfo = person.getAddress().getAdditionalInfo();
         this.zip = person.getAddress().getCityinfo().getZip();
         this.city = person.getAddress().getCityinfo().getCity();
-        
+        if(person.getId() != 0){
+            this.id = person.getId();
+        }
         
         List<Hobby> HobbyEntities = person.getHobbies();
         for (Hobby HobbyEntity : HobbyEntities) {
@@ -55,7 +58,11 @@ public class PersonFullMessage implements JSONMessage<Person> {
         for (String name : hobbyList) {
             hobbies.add(facade.getHobby(name));
         }
-        return (new Person(firstName, lastName, hobbies, mail, address, phoneNumbers));
+        Person person = new Person(firstName, lastName, hobbies, mail, address, phoneNumbers);
+        if(this.id != 0){
+            person.setId(id);
+        }
+        return (person);
     }
 
 }
