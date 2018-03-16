@@ -115,7 +115,12 @@ public class Facade {
     //Mikkel
     public List<Person> getPersonsWithHobby(String name) {
         List<Person> persons = new ArrayList();
-        Hobby hobby = getHobby(name);
+        Hobby hobby = null;
+        try {
+            hobby = getHobby(name);
+        } catch (Exception ex) {
+            throw new HobbyNotFoundException("The given hobby does not exist.");
+        } 
         persons = hobby.getPersons();
         return persons;
     }
@@ -148,7 +153,6 @@ public class Facade {
         } finally {
             em.close();
         }
-
         return persons;
     }
 
@@ -277,7 +281,8 @@ public class Facade {
             phone = getPhone(phoneNumber);
         } catch (Exception ex) {
             throw new PhoneNotFoundException("The given phone number does not exist.");
-        }        EntityManager em = getEntityManager();
+        }        
+        EntityManager em = getEntityManager();
         Person person = null;
         try {
             Query query = em.createQuery("SELECT p FROM Person p WHERE :phone MEMBER OF p.phoneNumbers");
