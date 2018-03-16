@@ -74,7 +74,6 @@ public class Facade {
                 throw new PersonNotFoundException("No person with provided id found");
             }
             em.getTransaction().begin();
-
             em.remove(person);
             em.getTransaction().commit();
         } finally {
