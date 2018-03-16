@@ -47,7 +47,7 @@ public class CompanyResource {
     public String getAllCompanies() {
         ArrayList<JSONMessage> messages = new ArrayList<>();
         for (Company company : facade.getCompanies()) {
-            messages.add(new CompanyContactMessage(company));
+            messages.add(new CompanyFullMessage(company));
         }
         return MessageFacade.messageListtoJson(messages);
     }

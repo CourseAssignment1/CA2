@@ -40,7 +40,7 @@ function toTableContact(data) {
            return '<tr><td>' + person.firstName + '</td>'
                 + '<td>' + person.lastName + '</td>'
                 + '<td>' + person.mail + '</td>'
-                + '<td>' + person.phoneNumbers[0].number + '</td>'
+                + '<td>' + person.phoneNumbers.join(", ") + '</td>'
                 + '</td>' 
                 + '</tr>'
     });
@@ -56,7 +56,7 @@ function toTableComplete(data) {
                 + '<td>' + person.phoneNumbers[0].number + '</td>'
                 + '<td>' + person.city + '</td>'
                 + '<td>' + person.street + '</td>'
-                + '<td>' + person.zip + '</td>'
+                + '<td>' + person.zip + '</td>';
                 + '<td>' + person.hobbyList[0] + '</td>';
                 + '</tr>';
     });

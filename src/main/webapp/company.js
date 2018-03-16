@@ -16,7 +16,7 @@ function getDetails() {
 }
 
 function fetchFromServer(radio) {
-    var url = "http://localhost:8084/CA2/api/person/" + radio + "/";
+    var url = "http://localhost:8084/CA2/api/company/" + radio + "/";
     var conf = {method: 'get'};
 
     var promise = fetch(url, conf);
@@ -35,29 +35,29 @@ function fetchFromServer(radio) {
 }
 
 function toTableContact(data) {
-    var list = '<thead><th> First Name </th><th>Last Name</th><th>Mail</th><th>Phone</th></thead>';
-     list += data.map(function (person) {
-           return '<tr><td>' + person.firstName + '</td>'
-                + '<td>' + person.lastName + '</td>'
-                + '<td>' + person.mail + '</td>'
-                + '<td>' + person.phoneNumbers[0].number + '</td>'
-                + '</td>' 
-                + '</tr>'
+    var list = '<thead><th> Name </th><th>Mail</th><th>Phone</thead>';
+     list += data.map(function (company) {
+           return '<tr><td>' + company.name + '</td>'
+                + '<td>' + company.mail + '</td>'
+                + '<td>' + company.phoneNumbers[0].number + '</td>'
+                + '</tr>';
     });
 
     document.getElementById("tblbody").innerHTML = list;
 }
 function toTableComplete(data) {
-    var list = '<thead><th>First Name</th><th>Last Name</th><th>Mail</th><th>Phone</th><th>City</th><th>Street</th><th>Zip</th><th>Hobies</th></thead>';
-     list += data.map(function (person) {
-           return '<tr><td>' + person.firstName + '</td>'
-                + '<td>' + person.lastName + '</td>'
-                + '<td>' + person.mail + '</td>'
-                + '<td>' + person.phoneNumbers[0].number + '</td>'
-                + '<td>' + person.city + '</td>'
-                + '<td>' + person.street + '</td>'
-                + '<td>' + person.zip + '</td>'
-                + '<td>' + person.hobbyList[0] + '</td>';
+    var list = '<thead><th>Name</th><th>Description</th><th>Cvr</th><th>Number of Emp</th><th>MarketValue</th><th>Mail</th><th>Phone Numbers</th><th>Street</th><th>Zip</th><th>City</th></thead>';
+     list += data.map(function (company) {
+           return '<tr><td>' + company.name + '</td>'
+                + '<td>' + company.description + '</td>'
+                + '<td>' + company.cvr + '</td>'
+                + '<td>' + company.numEmployees + '</td>'
+                + '<td>' + company.marketValue + '</td>'
+                + '<td>' + company.mail + '</td>'
+                + '<td>' + company.phoneNumbers.number.join(", ") + '</td>'
+                + '<td>' + company.street + '</td>'
+                + '<td>' + company.zip + '</td>'
+                + '<td>' + company.city + '</td>';
                 + '</tr>';
     });
 
