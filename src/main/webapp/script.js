@@ -17,7 +17,6 @@ function getDetails() {
 function fetchFromServer(radio) {
     var url = "http://localhost:8084/CA2/api/person/" + radio + "/";
     var conf = {method: 'get'};
-
     var promise = fetch(url, conf);
     promise.then(function (response) {
         return response.json();
@@ -34,14 +33,23 @@ function fetchFromServer(radio) {
 }
 
 function fetchFromServerOnBtnCommand(toUrl, value) {
+    var myBoo = false;
     var url = "http://localhost:8084/CA2/api/person/" + toUrl + "/" + value;
     var conf = {method: 'get'};
-    console.log(url);
     var promise = fetch(url, conf);
     promise.then(function (response) {
-        return response.json();
+      if (response.status === 500 || response.status === 404){
+            myBoo = true;   
+        }else{
+            return response.json();
+        }
+        
     }).then(data => {
-           toTableComplete(data);
+        if (myBoo === true){
+               alert("Request is not possible or what your looking for is not here");
+           }else if (myBoo === false){
+               toTableComplete(data);
+           }   
     }
     );
 }
