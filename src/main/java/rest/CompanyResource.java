@@ -57,7 +57,9 @@ public class CompanyResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getCompany(@PathParam("companyid") Long id) {
         Company company = facade.getCompany(id);
-        return MessageFacade.messagetoJson(new CompanyFullMessage(company));
+        ArrayList<JSONMessage> messages = new ArrayList<>();
+        messages.add(new CompanyFullMessage(company));
+        return MessageFacade.messageListtoJson(messages);
     }
 
     @Path("/contactinfo")
@@ -76,25 +78,31 @@ public class CompanyResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getCompanyInfo(@PathParam("companyid") Long id) {
         Company company = facade.getCompany(id);
-        return MessageFacade.messagetoJson(new CompanyContactMessage(company));
+        ArrayList<JSONMessage> messages = new ArrayList<>();
+        messages.add(new CompanyContactMessage(company));
+        return MessageFacade.messageListtoJson(messages);
     }
-    
+
     @Path("/complete/phone/{phonenumber}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getCompanyByPhone(@PathParam("phonenumber") String phone) {
-        Company company = facade.getCompanyByPhone(phone);        
-        return MessageFacade.messagetoJson(new CompanyFullMessage(company));
+        Company company = facade.getCompanyByPhone(phone);
+        ArrayList<JSONMessage> messages = new ArrayList<>();
+        messages.add(new CompanyFullMessage(company));
+        return MessageFacade.messageListtoJson(messages);
     }
-    
+
     @Path("/complete/cvr/{cvrnumber}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getCompanyByCvr(@PathParam("cvrnumber") Long cvr) {
         Company company = facade.getCompanyFromCvr(cvr);
-        return MessageFacade.messagetoJson(new CompanyFullMessage(company));
+        ArrayList<JSONMessage> messages = new ArrayList<>();
+        messages.add(new CompanyFullMessage(company));
+        return MessageFacade.messageListtoJson(messages);
     }
-    
+
     @Path("/complete/employees/{number}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -105,5 +113,5 @@ public class CompanyResource {
         }
         return MessageFacade.messageListtoJson(messages);
     }
-    
+
 }
