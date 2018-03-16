@@ -65,7 +65,7 @@ public class PersonResource {
     }
     
 
-    @Path("/complete/phone/{phonenumber}")
+    @Path("/phone/{phonenumber}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getPersonByPhone(@PathParam("phonenumber") String phone) {

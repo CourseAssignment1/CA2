@@ -51,12 +51,12 @@ public class Facade {
         String zip = person.getAddress().getCityinfo().getZip();
         String city = person.getAddress().getCityinfo().getCity();
         CityInfo cityInfo = getCityInfo(zip);
-        if(!cityInfo.getCity().equals(city)){
+        if (!cityInfo.getCity().equals(city)) {
             throw new ZipNotFoundException("City does not match zip");
         }
-        if(cityInfo == null){
+        if (cityInfo == null) {
             throw new ZipNotFoundException("The given zip does not exist.");
-        }else{
+        } else {
             em.merge(cityInfo);
         }
         person.getAddress().setCityinfo(cityInfo);
@@ -123,29 +123,24 @@ public class Facade {
             Query q1 = em.createQuery("SELECT h FROM Hobby h WHERE h.name = :name");
             q1.setParameter("name", name);
             hobby = (Hobby) q1.getSingleResult();
+            if (hobby == null) {
+                throw new HobbyNotFoundException("No hobby with that name found");
+            }
         } finally {
             em.close();
         }
         return hobby;
     }
 
-    //Gert
-    public Hobby getHobbyById(long id) {
-        Hobby hobby = new Hobby();
-        EntityManager em = emf.createEntityManager();
-        try {
-            Query q1 = em.createQuery("SELECT h FROM Hobby h WHERE h.id = :id");
-            q1.setParameter("id", id);
-            hobby = (Hobby) q1.getSingleResult();
-        } finally {
-            em.close();
-        }
-        return hobby;
-    }
 
     //Lene
     public List<Person> getPersonsFromZip(String zip) {
-        CityInfo cityInfo = getCityInfo(zip);
+        CityInfo cityInfo = null;
+        try {
+            cityInfo = getCityInfo(zip);
+        } catch (Exception ex) {
+            throw new ZipNotFoundException("The given zip does not exist.");
+        }
         EntityManager em = getEntityManager();
         List<Person> persons = new ArrayList();
         try {
