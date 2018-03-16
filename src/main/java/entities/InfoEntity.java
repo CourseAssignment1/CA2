@@ -30,9 +30,9 @@ public class InfoEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Address address;
-    @OneToMany (cascade = CascadeType.PERSIST)
+    @OneToMany (cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Phone> phoneNumbers;
 
     public InfoEntity() {
