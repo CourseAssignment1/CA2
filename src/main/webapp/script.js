@@ -54,8 +54,8 @@ function toTableContact(data) {
                 + '<td>' + person.lastName + '</td>'
                 + '<td>' + person.mail + '</td>'
                 + '<td>' + numbersStr + '</td>'
-                + '</tr>'
-    });
+                + '</tr>';
+    }).join("");
 
     document.getElementById("tblbody").innerHTML = list;
 }
@@ -64,15 +64,17 @@ function toTableComplete(data) {
     var list = '<thead><th>First Name</th><th>Last Name</th><th>Mail</th><th>Phone</th><th>City</th><th>Street</th><th>Zip</th><th>Hobies</th></thead>';
     list += data.map(function (person) {
         var numbersStr = person.phoneNumbers.reduce(reduceToString, "");
+        var hobbyListStr = person.hobbyList.join(", ");
+        console.log(hobbyListStr);
         return  '<tr><td>' + person.firstName + '</td>'
                 + '<td>' + person.lastName + '</td>'
                 + '<td>' + person.mail + '</td>'
                 + '<td>' + numbersStr + '</td>'
                 + '<td>' + person.city + '</td>'
                 + '<td>' + person.street + '</td>'
-                + '<td>' + person.zip + '</td>';
-                + '<td>' + person.hobbyList[0] + '</td>';
-        +'</tr>';
+                + '<td>' + person.zip + '</td>'
+                + '<td>' + hobbyListStr + '</td>'
+                +'</tr>';
     }).join("");
     document.getElementById("tblbody").innerHTML = list;
 }

@@ -52,21 +52,25 @@
         <div class="container-fluid bg-3 text-center">    
             <div class="container">
                 <div class='inputs'>      
-                    <button class="btn-success" id='findPersons'>Search All</button><br><br>
+                    <button class="btn btn-success" id='findPersons'>Search All</button>
+                    <div class='inputs'>
+                        <Input type='radio' name='direction' id='contactinfo' checked="checked"/>  Contact Info
+                        <Input type='radio' name='direction' id='complete'/> Complete Information
+                    </div><br>
                     <input id="searchPerson"/>
-                  <div id ='findThings'> 
-                    <button class ="btn-primary" id='name'>Search Name</button>
-                    <button class ="btn-primary" id='city'>Search City</button>
-                    <button class ="btn-primary" id='phone'>Search Phone</button>
-                    <button class ="btn-primary" id='hobby'>Search Hobby</button>
-                  </div>
-                </div>
-                <div class='inputs'>
-                    <Input type='radio' name='direction' id='contactinfo' checked="checked"/>  Contact Info
-                    <Input type='radio' name='direction' id='complete'/> Complete Information
-                </div>
 
-                <table id="tbl" class="table">
+
+                    <div id ='findThings'> <br>
+                        <button class ="btn btn-primary" id='complete'>Search Id</button>
+                        <button class ="btn btn-primary" id='city'>Search Zip</button>
+                        <button class ="btn btn-primary" id='phone'>Search Phone</button>
+                        <button class ="btn btn-primary" id='hobby'>Search Hobby</button>
+                    </div>
+                    
+                </div><br>
+
+
+                <table id="tbl" class="table table-striped">
                     <tbody id="tblbody"></tbody>
                 </table>
 

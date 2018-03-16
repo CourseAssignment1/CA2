@@ -3,6 +3,14 @@ var globalList = [];
 
 btn.onclick = getDetails;
 
+document.getElementById("findThings").onclick = getBtnPressed;
+
+function getBtnPressed(e) {
+    var btnId = e.target.id;
+    var value = document.getElementById("findCompany").value;
+    fetchFromServerOnBtnCommand(btnId, value);
+}
+
 function getDetails() {
 //    var p = document.getElementById("newPerson").value;
     var radio;
@@ -34,6 +42,19 @@ function fetchFromServer(radio) {
 
 }
 
+function fetchFromServerOnBtnCommand(toUrl, value) {
+    var url = "http://localhost:8084/CA2/api/company/complete/" + toUrl + "/" + value;
+    var conf = {method: 'get'};
+    console.log(url);
+    var promise = fetch(url, conf);
+    promise.then(function (response) {
+        return response.json();
+    }).then(data => {
+           toTableComplete(data);
+    }
+    );
+}
+
 function toTableContact(data) {
     var list = '<thead><th> Name </th><th>Mail</th><th>Phone</thead>';
     list += data.map(function (company) {
@@ -41,9 +62,8 @@ function toTableContact(data) {
         return '<tr><td>' + company.name + '</td>'
                 + '<td>' + company.mail + '</td>'
                 + '<td>' + numbersStr + '</td>'
-                +
                 +'</tr>';
-    });
+    }).join("");
 
     document.getElementById("tblbody").innerHTML = list;
 }
@@ -62,7 +82,7 @@ function toTableComplete(data) {
                 + '<td>' + company.zip + '</td>'
                 + '<td>' + company.city + '</td>';
                 +'</tr>';
-    });
+    }).join("");
 
     document.getElementById("tblbody").innerHTML = list;
 }

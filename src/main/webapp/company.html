@@ -52,21 +52,22 @@
         <div class="container-fluid bg-3 text-center">    
             <div class="container">
                 <div class='inputs'>      
-                    <button id='findPersons'>Search All</button><br><br>
-                    <input id="newPerson"/>
-                    
-                    <button id='name'>Search Name</button>
-                    <button id='city'>Search City</button>
-                    <button id='cvr'>Search Cvr</button>
-                    <button id='employees'>Search Number of Employees</button>
-                    <button id='findPersonsHobby'>Search Hobby</button>
-                </div>
-                <div class='inputs'>
-                    <Input type='radio' name='direction' id='contactinfo' checked="checked"/>  Contact Info
-                    <Input type='radio' name='direction' id='complete'/> Complete Information
-                </div>
+                    <button class="btn btn-success" id='findPersons'>Search All</button>
+                    <div class='inputs'>
+                        <Input type='radio' name='direction' id='contactinfo' checked="checked"/>  Contact Info
+                        <Input type='radio' name='direction' id='complete'/> Complete Information
+                    </div><br>
+                    <input id="findCompany"/>
+                    <div id ='findThings'> <br> 
+                        <button class="btn btn-info" >Search id</button>
+                        <button class="btn btn-info" id='cvr'>Search Cvr</button>
+                        <button class="btn btn-info" id='phone'>Search phone</button>
+                        <button class="btn btn-info" id='employees'>Search Number of Employees</button>
+                    </div>
+                </div><br>
 
-                <table id="tbl" class="table">
+
+                <table id="tbl" class="table table-striped">
                     <tbody id="tblbody"></tbody>
                 </table>
 
