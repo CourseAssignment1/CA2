@@ -48,6 +48,18 @@ public class Facade {
     public void addPerson(Person person) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+        String zip = person.getAddress().getCityinfo().getZip();
+        String city = person.getAddress().getCityinfo().getCity();
+        CityInfo cityInfo = getCityInfo(zip);
+        if(!cityInfo.getCity().equals(city)){
+            throw new ZipNotFoundException("City does not match zip");
+        }
+        if(cityInfo == null){
+            throw new ZipNotFoundException("The given zip does not exist.");
+        }else{
+            em.merge(cityInfo);
+        }
+        person.getAddress().setCityinfo(cityInfo);
         em.persist(person);
         em.getTransaction().commit();
     }
