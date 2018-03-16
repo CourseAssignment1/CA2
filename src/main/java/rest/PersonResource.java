@@ -126,7 +126,7 @@ public class PersonResource {
         facade.addPerson(person);
     }
     
-    @Path("/delete/{personid}")
+    @Path("/{personid}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public void removePerson(@PathParam("personid") Long id){
