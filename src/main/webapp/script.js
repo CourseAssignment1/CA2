@@ -44,7 +44,6 @@ function fetchFromServerOnBtnCommand(toUrl, value) {
            toTableComplete(data);
     }
     );
-
 }
 
 function toTableContact(data) {
@@ -86,20 +85,6 @@ function getBtnPressed(e) {
     fetchFromServerOnBtnCommand(btnId, value);
 
 
-}
-
-function toTableCompleteSingleObject(data) {
-    var list = '<thead><th>First Name</th><th>Last Name</th><th>Mail</th><th>Phone</th><th>City</th><th>Street</th><th>Zip</th><th>Hobies</th></thead>';
-    return '<tr><td>' + data.firstName + '</td>'
-            + '<td>' + data.lastName + '</td>'
-            + '<td>' + data.mail + '</td>'
-            + '<td>' + data.phoneNumbers + '</td>'
-            + '<td>' + data.city + '</td>'
-            + '<td>' + data.street + '</td>'
-            + '<td>' + data.zip + '</td>';
-            + '<td>' + data.hobbyList[0] + '</td>';
-    +'</tr>';
-    document.getElementById("tblbody").innerHTML = list;
 }
 
 function reduceToString(acc, obj, index, arr) {
