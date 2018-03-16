@@ -60,8 +60,10 @@ public class PersonResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getPerson(@PathParam("personid") Long id) {
-        Person person = facade.getPerson(id);        
-        return MessageFacade.messagetoJson(new PersonFullMessage(person));
+        Person person = facade.getPerson(id);
+        ArrayList<JSONMessage> messages = new ArrayList<>();
+        messages.add(new PersonFullMessage(person));
+        return MessageFacade.messageListtoJson(messages);
     }
     
 
@@ -69,8 +71,10 @@ public class PersonResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getPersonByPhone(@PathParam("phonenumber") String phone) {
-        Person person = facade.getPersonByPhone(phone);        
-        return MessageFacade.messagetoJson(new PersonFullMessage(person));
+        Person person = facade.getPersonByPhone(phone); 
+         ArrayList<JSONMessage> messages = new ArrayList<>();
+         messages.add(new PersonFullMessage(person));
+        return MessageFacade.messageListtoJson(messages);
     }
 
     @Path("/contactinfo")
@@ -88,8 +92,10 @@ public class PersonResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getPersonInfo(@PathParam("personid") Long id) {
-        Person person = facade.getPerson(id);        
-        return MessageFacade.messagetoJson(new PersonContactMessage(person));
+        Person person = facade.getPerson(id);
+        ArrayList<JSONMessage> messages = new ArrayList<>();
+        messages.add(new PersonContactMessage(person));
+        return MessageFacade.messageListtoJson(messages);
     }
     
     @Path("/hobby/{hobbyname}")
