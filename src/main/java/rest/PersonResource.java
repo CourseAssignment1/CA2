@@ -16,8 +16,12 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.POST;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
@@ -61,7 +65,7 @@ public class PersonResource {
     }
     
 
-    @Path("/complete/phone/{phonenumber}")
+    @Path("/phone/{phonenumber}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getPersonByPhone(@PathParam("phonenumber") String phone) {
@@ -114,4 +118,18 @@ public class PersonResource {
 //    @Consumes(MediaType.APPLICATION_JSON)
 //    public void putJson(String content) {
 //    }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addPerson(String json){
+        Person person = MessageFacade.fromJson(json, PersonFullMessage.class);
+        facade.addPerson(person);
+    }
+    
+    @Path("/{personid}")
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    public void removePerson(@PathParam("personid") Long id){
+        facade.removePerson(id);
+    }
 }

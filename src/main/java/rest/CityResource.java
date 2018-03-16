@@ -58,12 +58,5 @@ public class CityResource {
         return MessageFacade.messageListtoJson(messages);
     }
 
-    /**
-     * PUT method for updating or creating an instance of CityResource
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
-    }
+
 }
