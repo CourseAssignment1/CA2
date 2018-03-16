@@ -64,7 +64,7 @@ public class Generator {
 
     static int phoneCount;
     static int numbersOfHobbies = 20;
-    static int numbersOfZips = 40;
+    static int numbersOfZips = 1352;
     
 
     public static int randomNumber(int range) {
