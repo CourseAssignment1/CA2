@@ -43,7 +43,7 @@ function fetchFromServer(radio) {
 
 function fetchFromServerOnBtnCommand(toUrl, value) {
     var myBoo = false;
-    var url = "http://localhost:8084/CA2/api/company/complete/" + toUrl + "/" + value;
+    var url = "http://localhost:8084/CA2/api/company/" + toUrl + "/" + value;
     var conf = {method: 'get'};
     var promise = fetch(url, conf);
     promise.then(function (response) {
