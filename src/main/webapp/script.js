@@ -53,6 +53,27 @@ function fetchFromServerOnBtnCommand(toUrl, value) {
     }
     );
 }
+document.getElementById("delete").onclick = getBtnDelete;
+
+function getBtnDelete(){
+    var value = document.getElementById("searchPerson").value;
+    fetchFromServerOnBtnDelete(value);
+}
+function fetchFromServerOnBtnDelete(value) {
+    var myBoo = false;
+    var url = "http://localhost:8084/CA2/api/person/" + value;
+    var conf = {method: 'delete'};
+    var promise = fetch(url, conf);
+    promise.then(function (response) {
+      if (response.status === 500 || response.status === 404){
+            myBoo = true;   
+        }else{
+            alert("Person is deleted");
+            return null;
+        }
+    });
+}
+
 
 function toTableContact(data) {
     var list = '<thead><th> First Name </th><th>Last Name</th><th>Mail</th><th>Phone</th></thead>';
@@ -69,11 +90,12 @@ function toTableContact(data) {
 }
 
 function toTableComplete(data) {
-    var list = '<thead><th>First Name</th><th>Last Name</th><th>Mail</th><th>Phone</th><th>City</th><th>Street</th><th>Zip</th><th>Hobies</th></thead>';
+    var list = '<thead><th>Id</th><th>First Name</th><th>Last Name</th><th>Mail</th><th>Phone</th><th>City</th><th>Street</th><th>Zip</th><th>Hobies</th></thead>';
     list += data.map(function (person) {
         var numbersStr = person.phoneNumbers.reduce(reduceToString, "");
         var hobbyListStr = person.hobbyList.join(", ");
-        return  '<tr><td>' + person.firstName + '</td>'
+        return  '<tr><td>' + person.id + '</td>'
+                + '<td>' + person.firstName + '</td>'
                 + '<td>' + person.lastName + '</td>'
                 + '<td>' + person.mail + '</td>'
                 + '<td>' + numbersStr + '</td>'
