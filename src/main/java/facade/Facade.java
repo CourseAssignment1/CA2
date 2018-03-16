@@ -85,6 +85,7 @@ public class Facade {
     }
 
     public Person updatePerson(Person person) {
+        
         EntityManager em = getEntityManager();
         Person result = null;
         try {
