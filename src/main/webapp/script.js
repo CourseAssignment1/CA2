@@ -73,7 +73,6 @@ function toTableComplete(data) {
     list += data.map(function (person) {
         var numbersStr = person.phoneNumbers.reduce(reduceToString, "");
         var hobbyListStr = person.hobbyList.join(", ");
-        console.log(hobbyListStr);
         return  '<tr><td>' + person.firstName + '</td>'
                 + '<td>' + person.lastName + '</td>'
                 + '<td>' + person.mail + '</td>'
