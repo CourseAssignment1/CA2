@@ -90,7 +90,7 @@ function toTableContact(data) {
 }
 
 function toTableComplete(data) {
-    var list = '<thead><th>Id</th><th>First Name</th><th>Last Name</th><th>Mail</th><th>Phone</th><th>City</th><th>Street</th><th>Zip</th><th>Hobies</th></thead>';
+    var list = '<thead><th>Id</th><th>First Name</th><th>Last Name</th><th>Mail</th><th>Phone</th><th>City</th><th>Street</th><th>Zip</th><th>Hobbies</th></thead>';
     list += data.map(function (person) {
         var numbersStr = person.phoneNumbers.reduce(reduceToString, "");
         var hobbyListStr = person.hobbyList.join(", ");
